@@ -1,6 +1,6 @@
 "use client";
 
-import { Tldraw } from "tldraw";
+import {  DefaultGrid, Tldraw } from "tldraw";
 import "tldraw/tldraw.css";
 
 import { ComplexityTimePlot } from "./custom-tldraw-components/complexity-plot";
@@ -17,10 +17,13 @@ export default function UserCanvas() {
           ZoomMenu: () => null,
           Minimap: () => null,
           QuickActions: () => null,
+          Grid: props => <DefaultGrid {...props} />,
         }}
         shapeUtils={[ComplexityTimePlot, VennDiagramShape]}
+        onMount={(editor) => {
+          editor.updateInstanceState({ isGridMode: true, })
+        }}
       >
-        
       </Tldraw>
     </div>
   );
