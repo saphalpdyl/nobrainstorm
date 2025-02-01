@@ -4,6 +4,7 @@ import { Tldraw } from "tldraw";
 import "tldraw/tldraw.css";
 
 import { ComplexityTimePlot } from "./custom-tldraw-components/complexity-plot";
+import { VennDiagramShape } from "@/components/custom-tldraw-components/venn-diagram";
 
 export default function UserCanvas() {
   return (
@@ -17,7 +18,7 @@ export default function UserCanvas() {
           Minimap: () => null,
           QuickActions: () => null,
         }}
-        shapeUtils={[ComplexityTimePlot]}
+        shapeUtils={[ComplexityTimePlot, VennDiagramShape]}
       >
         
       </Tldraw>

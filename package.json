@@ -9,17 +9,27 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@radix-ui/react-toast": "^1.2.5",
     "@tldraw/sync": "^3.7.2",
+    "class-variance-authority": "^0.7.1",
+    "clsx": "^2.1.1",
+    "d3": "^7.9.0",
+    "lucide-react": "^0.474.0",
     "next": "15.1.6",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "recharts": "^2.15.1",
-    "tldraw": "^3.7.2"
+    "tailwind-merge": "^3.0.1",
+    "tailwindcss-animate": "^1.0.7",
+    "tldraw": "^3.7.2",
+    "venn.js": "^0.2.20"
   },
   "devDependencies": {
+    "@types/d3": "^7.4.3",
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",
+    "@types/venn": "^0.2.7",
     "postcss": "^8",
     "tailwindcss": "^3.4.1",
     "typescript": "^5"
