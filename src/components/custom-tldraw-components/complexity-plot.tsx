@@ -1,6 +1,6 @@
 import { BaseBoxShapeUtil, HTMLContainer, RecordProps, T, TLBaseShape } from 'tldraw'
 import { ScatterChart, Scatter, XAxis, YAxis, CartesianGrid, Tooltip, Label, ResponsiveContainer, Cell } from 'recharts'
-import { getComplexityColor } from '@/utils/utils'
+import { getComplexityColor } from '@/lib/utils'
 
 type ComplexityTimeDataPoint = {
   name: string

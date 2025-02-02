@@ -1,4 +1,5 @@
 import { cn } from "@/lib/utils";
+import { ScrollArea } from "@/components/ui/scroll-area";
 import { ArcherElement } from "react-archer";
 
 export default function TextBox({
@@ -8,12 +9,14 @@ export default function TextBox({
   title,
   className,
   titleClassName,
+  onClick,
 }: {
   title?: string;
   text: string;
   id: string;
   className?: string;
   titleClassName?: string;
+  onClick: () => void;
   relations?: Array<{
     targetId: string;
     targetAnchor: 'top' | 'bottom' | 'left' | 'right';
@@ -26,11 +29,24 @@ export default function TextBox({
       id={id}
       relations={relations}
     >
-      <div className={cn("min-w-24 max-w-96 bg-white text-gray-600 font-thin text-sm border border-gray-400 p-2 rounded-md", className)}>
-        {
-          title && <span className={cn("text-xl font-bold underline", titleClassName)}>{ title }</span>
-        }
-        <p>{ text }</p>
+      <div 
+      onClick={onClick}
+      className={cn(
+        "w-full min-h-[14rem] max-h-[20rem] p-3 bg-white text-black font-thin text-2xl border border-gray-400 rounded-md flex flex-col overflow-y-auto ",
+        className
+      )}>
+        {title && (
+          <div className="p-2 border-b border-gray-200">
+            <span className={cn(" font-bold block", titleClassName)}>
+              {title}
+            </span>
+          </div>
+        )}
+          <div className="pr-4"> {/* Add right padding for scrollbar */}
+            <div className="text-lg font-[Poppins]" dangerouslySetInnerHTML={{
+              __html: text,
+            }}></div>
+          </div>
       </div>
     </ArcherElement>
   );

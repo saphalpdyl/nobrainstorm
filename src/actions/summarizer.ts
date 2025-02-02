@@ -1,3 +1,5 @@
+"use server";
+
 import OpenAI from "openai";
 import { ChatCompletionCreateParamsStreaming} from "openai/resources/index.mjs";
 import { summarizeConfig } from "@/constants/constants";

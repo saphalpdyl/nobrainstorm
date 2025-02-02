@@ -1,12 +1,13 @@
 "use client";
 
-import {  DefaultGrid, Tldraw } from "tldraw";
+import {  createShapeId, DefaultGrid, Tldraw, TLGeoShape } from "tldraw";
 import "tldraw/tldraw.css";
 
 import { ComplexityTimePlot } from "./custom-tldraw-components/complexity-plot";
 import { VennDiagramShape } from "@/components/custom-tldraw-components/venn-diagram";
 import UserEditor from "./user-editor";
 import UserHoverTextButton from "./user-hover-text-button";
+import EnhanceWithAIDrawer from "./enhance-with-ai-drawer";
 
 export default function UserCanvas() {
   return (
@@ -26,6 +27,7 @@ export default function UserCanvas() {
           editor.updateInstanceState({ isGridMode: true, })
         }}
       >
+        <EnhanceWithAIDrawer />
         <UserEditor />
         <UserHoverTextButton />
       </Tldraw>

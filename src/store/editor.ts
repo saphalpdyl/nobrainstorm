@@ -7,6 +7,9 @@ interface EditorStore {
 
   isEnhanceChatOpen: boolean;
   setIsEnhanceChatOpen: (isOpen: boolean) => void;
+
+  textToEnhance: string | null;
+  setTextToEnhance: (text: string | null) => void;
 }
 
 export const useEditorStore = create<EditorStore>((set) => ({
@@ -17,4 +20,7 @@ export const useEditorStore = create<EditorStore>((set) => ({
 
   isEnhanceChatOpen: false,
   setIsEnhanceChatOpen: (isOpen: boolean) => set({ isEnhanceChatOpen: isOpen }),
+
+  textToEnhance: null,
+  setTextToEnhance: (text: string | null) => set({ textToEnhance: text }),
 }));

@@ -2,9 +2,9 @@
 
 import OpenAI from "openai";
 import { ChatCompletionCreateParamsNonStreaming, ChatCompletionMessageParam } from "openai/resources/index.mjs";
-import {lineGraphConfig}  from "../../constants/constants"
-import {getTextBetweenTags} from "../../utils/utils"
-import { generateDalleImage } from "@/utils/dalle";
+import {lineGraphConfig}  from "../constants/constants"
+import {getTextBetweenTags} from "@/lib/utils";
+import { generateDalleImage } from "@/actions/dalle";
 
 export async function generateImage(canvasInput: String) {
   let prompt: ChatCompletionCreateParamsNonStreaming = {
