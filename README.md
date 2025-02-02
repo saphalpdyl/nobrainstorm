@@ -1,14 +1,13 @@
-# [Nobrainstrom: The only whiteboard you need](https://www.nobrainstorm.tech/)
+# [Nobrainstorm: The Only Whiteboard You Need](https://www.nobrainstorm.tech/)
 
-- [36 hours left] Alright, let’s being this hackathon with a winning spirit!!! <br/>
-- [24 hours left], what do we do? <br/>
-- [12 hours left], *what do we do?* </br>
-- [10 hours left], Hey, (insert AI chatbot) WHAT do we do in a hackathon?
+- [36 hours left] Alright, let’s begin this hackathon with a winning spirit!!!  
+- [24 hours left] What do we do?  
+- [12 hours left] *What do we do?*  
+- [10 hours left] Hey, (insert AI chatbot), WHAT do we do in a hackathon?
 
+Fearing the deadline approaching quickly, we could not, for the life of us, come up with a project we all wanted to work on. Each of us had an idea in mind, but without a central theme, we were lost. Just like us, many others faced the same struggle in deciding what to work on. Hence, we decided to create **Nobrainstorm** to solve this predicament.
 
-Fearing the deadline approaching quickly, we could not, for the love of god, come up with a project we all wanted to work upon. We all had one thing we wanted to do but not having a central theme made us confused. Just like us, everyone else was having similar issues with finding what to work on. Hence, we desiced to create Nobrainstrom to solve this predicement.
-
-**Nobrainstrom** is an online whiteboard enhanced by AI analysis and automation, designed to revolutionize how one brainstorms and develop ideas to work on.
+**Nobrainstorm** is an online whiteboard enhanced by AI analysis and automation, designed to revolutionize how one brainstorms and develops ideas.
 
 ## Features
 
@@ -20,7 +19,7 @@ Fearing the deadline approaching quickly, we could not, for the love of god, com
 ### AI Guidance
 
 - **Goal-Oriented Suggestions**: Set specific brainstorming goals (e.g., "Product Launch Strategy for a Hackathon") to focus AI-generated suggestions.
-- **Real-Time Concept Generation**: The AI generates related concepts, connects ideas, and builds visual frameworks in real time.
+- **Real-Time Concept Generation**: The AI generates related concepts, connects ideas, and builds visual frameworks in real-time.
 
 ### Image Analysis & Enhancement
 
@@ -31,13 +30,9 @@ Fearing the deadline approaching quickly, we could not, for the love of god, com
 - **JSON-Based Visualization**:
   - AI creates JSON values representing X and Y coordinates for 2-3 graphs comparing key brainstorming elements.
   - Contextual pairing and ranking for 2D graph plotting.
-  - Frontend utilizes this data to draft charts using a JavaScript library.
+  - The frontend utilizes this data to draft charts using a JavaScript library.
 
-### Features we want to add in the future:
-
-### Voice-to-Text
-
-- **Live Idea Capture**: Capture spoken ideas during live sessions.
+## Features We Want to Add in the Future
 
 ### Instant Visualizations
 
@@ -46,11 +41,12 @@ Fearing the deadline approaching quickly, we could not, for the love of god, com
 ### Flowcharts
 
 - **Pattern Recognition**:
-  - AI will identify flows/patterns in brainstorming sessions and generates flow diagrams.
-  - Flowcharts can be provided provided, which the frontend converts into visual representations.
+  - AI will identify flows and patterns in brainstorming sessions and generate flow diagrams.
+  - Flowcharts can be provided as input, which the frontend converts into visual representations.
 
 ## Usage
 
+```markdown
 1. **Launch the Application**: Open your browser and navigate to https://www.nobrainstorm.tech/.
 2. **Create a New Session**: Start a new brainstorming session by selecting the "New Session" option.
 3. **Utilize the Team Canvas**: Collaborate with your team in real-time using text, sketches, and sticky notes.
