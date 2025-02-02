@@ -21,12 +21,10 @@ export default function EnhanceWithAIDrawer() {
 
   const editor = useEditor();
   
-  const [generating, setGenerating] = useState(false);
-
   const { textToEnhance, hoveredNode, setIsEnhanceChatOpen } = useEditorStore(); 
 
   useEffect(() => {
-    if (!textToEnhance || generating) return;
+    if (!textToEnhance) return;
 
     setConciseExplanation("");
     setElaborateExplanation("");
@@ -35,17 +33,13 @@ export default function EnhanceWithAIDrawer() {
     
     void async function() {
       try {
-        setGenerating(true);
 
         const _ = await Promise.all([
           handleEnhanceWithAI("concise"),
           handleEnhanceWithAI("elaborative"),
           handleEnhanceWithAI("general"),
         ]);
-
-        setGenerating(true);
       } finally {
-        setGenerating(false);
       }
     }();
     
@@ -136,10 +130,10 @@ export default function EnhanceWithAIDrawer() {
                 />
                 <Button 
                   onClick={handleApplySelection}
-                  disabled={!selectedExplanation || generating}
+                  disabled={!selectedExplanation}
                   className=" p-6 text-3xl font-shantellSans cursor-pointer bg-purple-500 text-white hover:bg-pruple-600"
                 >
-                  {!selectedExplanation ? "Select an explanation" : generating ? "Generating..." : "Create a text box"}
+                  {!selectedExplanation ? "Select an explanation" : "Create a text box"}
                 </Button>
               </div>
               <div className="flex-1 w-full mt-16 flex flex-col items-start justify-between gap-10">
