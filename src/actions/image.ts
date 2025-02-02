@@ -1,46 +1,76 @@
 "use server";
 
 import OpenAI from "openai";
-import { ChatCompletionCreateParamsNonStreaming, ChatCompletionMessageParam } from "openai/resources/index.mjs";
-import {lineGraphConfig}  from "../constants/constants"
-import {getTextBetweenTags} from "@/lib/utils";
-import { generateDalleImage } from "@/actions/dalle";
+import { lineGraphConfig } from "../../constants/constants";
+import { getTextBetweenTags } from "../../utils/utils";
+import { generateDalleImage } from "@/utils/dalle";
+import { readFile } from "fs/promises";
 
-export async function generateImage(canvasInput: String) {
-  let prompt: ChatCompletionCreateParamsNonStreaming = {
-    ... lineGraphConfig,
-    messages: [
-      {
-        "role": "system",
-        "content": [
-          {
-            "type": "text",
-            "text": `You will receive an image, you need to see the image and you need to create an image generation prompt for DALLE-3 to generate the same image. The style of the image should be a simple, doodle like drawing but do get into detail about the image.  The image should also consider spatial directions of the elements in it.
-                The prompt should be in the form of:
-                <PROMPT> generated_prompt_here </PROMPT>
-            `
-        },
-        ],  
-      },
-      {
-        "role" : "user",
-        "content" : `${canvasInput}`
-      }
-    ],
-    response_format: {
-      "type": "text"
-    },
+
+
+// Environment variables are safer than hardcoding API keys
+const OPENAI_API_KEY = process.env.OPENAI_API_KEY || "";
+
+
+// Initialize OpenAI client
+const client = new OpenAI({
+  apiKey: OPENAI_API_KEY,
+});
+
+// Function to encode the image to base64
+async function encodeImage(imagePath: string): Promise<string> {
+  try {
+    const imageBuffer = await readFile(imagePath);
+    return imageBuffer.toString("base64");
+  } catch (error) {
+    throw new Error(
+      `Failed to encode image: ${
+        error instanceof Error ? error.message : String(error)
+      }`
+    );
   }
-  const openai = new OpenAI({
-    apiKey: process.env.OPENAI_API_KEY,
-  });
+}
 
-  const response = await openai.chat.completions.create(prompt);
+// Main function to analyze image
+export async function analyzeImage(imagePath: string): Promise<string> {
+  try {
+    const base64Image = await encodeImage(imagePath);
 
-  var message = response.choices[0].message.content
-  if (message === null){
-    return response
+    const response = await client.chat.completions.create({
+        ... lineGraphConfig,
+      model: "gpt-4o",
+      messages: [
+        {
+          role: "user",
+          content: [
+            {
+              type: "text",
+              text: `You will receive an image, you need to see the image and you need to create an image generation prompt for DALLE-3 to generate the same image. The style of the image should be a simple, doodle like drawing but do get into detail about the image. The image should also consider spatial directions of the elements in it.
+                    The prompt should be in the form of:
+                    <PROMPT> generated_prompt_here </PROMPT>
+                `,
+            },
+            {
+              type: "image_url",
+              image_url: {
+                url: `data:image/jpeg;base64,${base64Image}`,
+              },
+            },
+          ],
+        },
+      ],
+    });
+    var message = response.choices[0].message.content;
+    if (message === null) {
+      return "";
     }
-  var url = generateDalleImage(getTextBetweenTags(message, "<PROMPT>"));
-  return url
+    var url = generateDalleImage(getTextBetweenTags(message, "<PROMPT>"));
+    return url;
+  } catch (error) {
+    throw new Error(
+      `Failed to analyze image: ${
+        error instanceof Error ? error.message : String(error)
+      }`
+    );
+  }
 }

@@ -1,63 +1,60 @@
-# Brainstormer
+# [Nobrainstorm: The Only Whiteboard You Need](https://www.nobrainstorm.tech/)
 
-*Interactive AI-Driven Brainstorming Board*
+<img src="public/logo.png" alt="logo" width=100 height=100/>
 
-Brainstormer is a structured, visual collaboration tool enhanced by AI analysis and automation, designed to revolutionize the way teams brainstorm and develop ideas.
+- [36 hours left] Alright, let’s begin this hackathon with a winning spirit!!!  
+- [24 hours left] What do we do?  
+- [12 hours left] *What do we do?*  
+- [10 hours left] Hey, (insert AI chatbot), WHAT do we do in a hackathon?
+
+Fearing the deadline approaching quickly, we could not, for the life of us, come up with a project we all wanted to work on. Each of us had an idea in mind, but without a central theme, we were lost. Just like us, many others faced the same struggle in deciding what to work on. Hence, we decided to create **Nobrainstorm** to solve this predicament.
+
+**Nobrainstorm** is an online whiteboard enhanced by AI analysis and automation, designed to revolutionize how one brainstorms and develops ideas.
+
+**Technologies used**
+1. Next JS with Tailwind
+2. OpenAI for AI analysis and explanation
+3. Data bricks for Deepseek Janus[Image manipulation]
+
+![Main Image](https://i.imgur.com/nvo3Hzl.png)
 
 ## Features
 
-### Dual-Canvas Interface
+### Canvas Interface with tldraw
 
-- **Team Canvas**: Engage in real-time collaboration using text, sketches, and sticky notes.
-- **AI Canvas**: Automatically organizes ideas into flowcharts, Venn diagrams, or X-Y graphs to reveal trends and patterns.
+- **Canvas**: Engage in real-time collaboration using text, sketches, and sticky notes.
+- **AI Canvas**: Talk with AI to automatically organiz ideas into flowcharts, Venn diagrams, or X-Y graphs to reveal trends and patterns.
 
 ### AI Guidance
 
 - **Goal-Oriented Suggestions**: Set specific brainstorming goals (e.g., "Product Launch Strategy for a Hackathon") to focus AI-generated suggestions.
-- **Real-Time Concept Generation**: The AI generates related concepts, connects ideas, and builds visual frameworks in real time.
+- **Real-Time Concept Generation**: The AI generates related concepts, connects ideas, and builds visual frameworks in real-time.
 
 ### Image Analysis & Enhancement
 
-- **Sketch Refinement**: Upload or sketch images; the AI analyzes content and refines or iterates via DALL-E integration.
-
-### Instant Visualizations
-
-- **Automated Structuring**: Converts unstructured input into mind maps, timelines, or hierarchical charts automatically.
-
-### Voice-to-Text
-
-- **Live Idea Capture**: Capture spoken ideas during live sessions.
-- **Structured Responses**:
-  - Every 5-10 seconds (debounce) or with user interaction (button click).
-  - AI generates tables and short summaries of information on specific topics.
-  - Produces markdown tables highlighting positives and negatives, strengths and weaknesses.
+- **Sketch Refinement**: Sketch images and scribbles; the AI analyzes content and refines or iterates via DALL-E integration.
 
 ### Graphing
 
 - **JSON-Based Visualization**:
   - AI creates JSON values representing X and Y coordinates for 2-3 graphs comparing key brainstorming elements.
   - Contextual pairing and ranking for 2D graph plotting.
-  - Frontend utilizes this data to draft charts using a JavaScript library.
+  - The frontend utilizes this data to draft charts using a JavaScript library.
+
+## Features We Want to Add in the Future
+
+### Instant Visualizations
+
+- **Automated Structuring**: Convert unstructured input into mind maps, timelines, or hierarchical charts automatically.
 
 ### Flowcharts
 
 - **Pattern Recognition**:
-  - AI identifies flows/patterns in brainstorming sessions and generates flow diagrams.
-  - Flowcharts are provided in code, which the frontend converts into visual representations.
-
-### Additional Features
-
-- **Voice-to-Text Enhancement**: Converts voice input into text, corrects grammar, and generates concise notes.
-- **Scribble to Image**: Transforms selected sketches into refined images using DALL-E for minimalistic drawings.
-- **Simple Diagrams**: Generates Venn diagrams and simple roadmaps based on user input.
-- **AI Control**: Includes a "Freeze AI" button to pause automation during divergent thinking phases.
-- **User Control**: Allows users to edit AI outputs and includes a "Re-prompt" button for iterative refinement.
-
+  - AI will identify flows and patterns in brainstorming sessions and generate flow diagrams.
+  - Flowcharts can be provided as input, which the frontend converts into visual representations.
 
 ## Usage
 
-1. **Launch the Application**: Open your browser and navigate to `http://brainstromer.tech`.
-2. **Create a New Session**: Start a new brainstorming session by selecting the "New Session" option.
-3. **Utilize the Team Canvas**: Collaborate with your team in real-time using text, sketches, and sticky notes.
-4. **Engage the AI Canvas**: Allow the AI to organize and visualize your ideas into various formats.
-5. **Explore Additional Features**: Use voice-to-text, image analysis, and other tools to enhance your brainstorming experience.
+1. **Launch the Application**: Open your browser and navigate to https://www.nobrainstorm.tech/.
+2. **Engage the AI Canvas**: Allow the AI to organize and visualize your ideas into various formats.
+3. **Explore Additional Features**: Use explain with AI, image analysis, and other tools to enhance your brainstorming experience.
