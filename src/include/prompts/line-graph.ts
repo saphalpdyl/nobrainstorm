@@ -1,7 +1,7 @@
 "use server";
 
 import OpenAI from "openai";
-import { ChatCompletionCreateParamsNonStreaming, ChatCompletionMessageParam } from "openai/resources/index.mjs";
+import { ChatCompletionCreateParamsNonStreaming } from "openai/resources/index.mjs";
 import {lineGraphConfig}  from "../../constants/constants"
 
 
