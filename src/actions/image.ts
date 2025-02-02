@@ -1,11 +1,10 @@
 "use server";
 
 import OpenAI from "openai";
-import { lineGraphConfig } from "../../constants/constants";
-import { getTextBetweenTags } from "../../utils/utils";
-import { generateDalleImage } from "@/utils/dalle";
+import { lineGraphConfig } from "@/constants/constants";
+import { getTextBetweenTags } from "@/lib/utils";
+import { generateDalleImage } from "@/actions/dalle";
 import { readFile } from "fs/promises";
-
 
 
 // Environment variables are safer than hardcoding API keys
@@ -18,7 +17,7 @@ const client = new OpenAI({
 });
 
 // Function to encode the image to base64
-async function encodeImage(imagePath: string): Promise<string> {
+export async function encodeImage(imagePath: string): Promise<string> {
   try {
     const imageBuffer = await readFile(imagePath);
     return imageBuffer.toString("base64");
@@ -32,10 +31,8 @@ async function encodeImage(imagePath: string): Promise<string> {
 }
 
 // Main function to analyze image
-export async function analyzeImage(imagePath: string): Promise<string> {
+export async function analyzeImage(base64Image: string): Promise<string> {
   try {
-    const base64Image = await encodeImage(imagePath);
-
     const response = await client.chat.completions.create({
         ... lineGraphConfig,
       model: "gpt-4o",

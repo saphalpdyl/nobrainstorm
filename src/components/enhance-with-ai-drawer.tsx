@@ -39,8 +39,8 @@ export default function EnhanceWithAIDrawer() {
 
         const _ = await Promise.all([
           handleEnhanceWithAI("concise"),
-          // handleEnhanceWithAI("elaborative"),
-          // handleEnhanceWithAI("general"),
+          handleEnhanceWithAI("elaborative"),
+          handleEnhanceWithAI("general"),
         ]);
 
         setGenerating(true);
