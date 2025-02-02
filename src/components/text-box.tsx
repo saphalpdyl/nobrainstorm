@@ -32,7 +32,7 @@ export default function TextBox({
       <div 
       onClick={onClick}
       className={cn(
-        "w-full min-h-[14rem] max-h-[20rem] p-3 bg-white text-black font-thin text-2xl border border-gray-400 rounded-md flex flex-col overflow-y-auto ",
+        "w-full h-[14rem] p-3 bg-white text-black font-thin text-2xl border border-gray-400 rounded-md flex flex-col overflow-y-auto ",
         className
       )}>
         {title && (
@@ -43,7 +43,7 @@ export default function TextBox({
           </div>
         )}
           <div className="pr-4"> {/* Add right padding for scrollbar */}
-            <div className="text-lg font-[Poppins]" dangerouslySetInnerHTML={{
+            <div className="text-xs font-[Poppins]" dangerouslySetInnerHTML={{
               __html: text,
             }}></div>
           </div>
