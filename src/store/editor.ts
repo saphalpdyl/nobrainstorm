@@ -4,6 +4,9 @@ import { create } from "zustand";
 interface EditorStore {
   hoveredNode: TLShape | null;
   setHoveredNode: (node: TLShape | null) => void;
+
+  isEnhanceChatOpen: boolean;
+  setIsEnhanceChatOpen: (isOpen: boolean) => void;
 }
 
 export const useEditorStore = create<EditorStore>((set) => ({
@@ -11,4 +14,7 @@ export const useEditorStore = create<EditorStore>((set) => ({
   hoveredNode: null,
   // The current selected node
   setHoveredNode: (node: TLShape | null) => set({ hoveredNode: node }),
+
+  isEnhanceChatOpen: false,
+  setIsEnhanceChatOpen: (isOpen: boolean) => set({ isEnhanceChatOpen: isOpen }),
 }));

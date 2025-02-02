@@ -1,6 +1,7 @@
 import { useEditorStore } from "@/store/editor";
 import { Sparkles } from "lucide-react";
 import { AnimatePresence, motion } from "motion/react";
+import { DrawerTrigger } from "@/components/ui/drawer";
 
 export default function UserHoverTextButton() {
   const { hoveredNode, setHoveredNode } = useEditorStore();
@@ -17,10 +18,14 @@ export default function UserHoverTextButton() {
               top: hoveredNode.y - 32,
               left: hoveredNode.x,
             }}
-            className="absolute z-[9999] py-1 px-2 rounded-lg shadow-md bg-indigo-500 hover:bg-indigo-600 text-white font-semibold flex items-center gap-2 cursor-pointer"
-          >
-            <Sparkles className="text-yellow-300" size={16}/>
-            Enhance with AI
+            className="absolute py-1 px-2 rounded-lg shadow-md bg-indigo-500 hover:bg-indigo-600 text-white font-semibold  cursor-pointer"
+          > 
+            <DrawerTrigger asChild>
+              <div className="flex items-center gap-2">
+                <Sparkles className="text-yellow-300" size={16}/>
+                Enhance with AI
+              </div>
+            </DrawerTrigger>
           </motion.div>
         )
       }

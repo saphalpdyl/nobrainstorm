@@ -1,5 +1,8 @@
+"use client";
+
 import UserCanvas from "@/components/user-canvas";
 import { Toaster } from "@/components/ui/toaster";
+import { Drawer, DrawerContent, DrawerDescription, DrawerTitle } from "@/components/ui/drawer";
 
 import Image from "next/image";
 
@@ -11,7 +14,15 @@ export default function Home() {
         nobrainstorm.ai
       </div>
       <Toaster />
-      <UserCanvas />
+      <Drawer>
+        <UserCanvas />
+        <DrawerContent className="h-full rounded-none bg-white/20 backdrop-blur-sm border-none font-shantellSans z-[999]">
+          <DrawerTitle className="text-center text-3xl">Enhance with AI</DrawerTitle>
+          <DrawerDescription className="flex-1 flex flex-col items-center justify-center">
+            Hello from the 
+          </DrawerDescription>
+        </DrawerContent>
+      </Drawer>
     </div>
   );
 }

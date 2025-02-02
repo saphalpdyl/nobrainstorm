@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@radix-ui/react-dialog": "^1.1.5",
     "@radix-ui/react-slot": "^1.1.1",
     "@radix-ui/react-toast": "^1.2.5",
     "@tldraw/sync": "^3.7.2",
@@ -27,6 +28,7 @@
     "tailwindcss-animate": "^1.0.7",
     "tldraw": "^3.7.2",
     "usehooks-ts": "^3.1.0",
+    "vaul": "^1.1.2",
     "venn.js": "^0.2.20",
     "zustand": "^5.0.3"
   },
