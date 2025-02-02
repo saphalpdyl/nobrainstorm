@@ -193,6 +193,7 @@ function ScribbleToArtButton() {
                 let buffer = reader.result;
 
                 // Converting ArrayBuffer to Base64 string
+                //@ts-ignore
                 let base64data = btoa(String.fromCharCode.apply(null, new Uint8Array(buffer)));
 
                 // Logging the Base64 encoded string
