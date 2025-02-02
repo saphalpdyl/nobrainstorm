@@ -25,4 +25,6 @@ const explainWithAIConfig = {
     frequency_penalty: 0,
     presence_penalty: 0
   };
-  export {lineGraphConfig, summarizeConfig, explainWithAIConfig};
+
+  
+export {lineGraphConfig, summarizeConfig, explainWithAIConfig};

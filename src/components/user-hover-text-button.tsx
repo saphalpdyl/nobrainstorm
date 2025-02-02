@@ -1,6 +1,6 @@
 import { useEditorStore } from "@/store/editor";
-import { Sparkles } from "lucide-react";
-import { AnimatePresence, motion } from "motion/react";
+import { Pencil, Sparkles } from "lucide-react";
+import { AnimatePresence, hover, motion } from "motion/react";
 import { DrawerTrigger } from "@/components/ui/drawer";
 
 export default function UserHoverTextButton() {
@@ -18,17 +18,31 @@ export default function UserHoverTextButton() {
               top: hoveredNode.y - 32,
               left: hoveredNode.x,
             }}
-            className="absolute py-1 px-2 rounded-lg shadow-md bg-indigo-500 hover:bg-indigo-600 text-white font-semibold  cursor-pointer"
+            className="absolute flex items-center gap-2"
+          > 
+          <div
+            className="py-1 px-2 rounded-lg shadow-md bg-indigo-500 hover:bg-indigo-600 text-white font-semibold  cursor-pointer"
             onClick={() => {
               setTextToEnhance((hoveredNode.props as any).text)
             }}
-          > 
-          <DrawerTrigger asChild onClick={() => setIsEnhanceChatOpen(true)}>
+          >
+            <DrawerTrigger asChild onClick={() => setIsEnhanceChatOpen(true)}>
+              <div onClick={() => setIsEnhanceChatOpen(true)} className="flex items-center gap-2">
+                <Sparkles className="text-yellow-300" size={16}/>
+                Enhance with AI
+              </div>
+            </DrawerTrigger>
+            
+
+          </div>
+          <div
+            className="py-1 px-2 rounded-lg shadow-md bg-white hover:bg-gray-100 text-black font-semibold  cursor-pointer"
+          >
             <div onClick={() => setIsEnhanceChatOpen(true)} className="flex items-center gap-2">
-              <Sparkles className="text-yellow-300" size={16}/>
-              Enhance with AI
+              <Pencil className="text-gray-600" size={16}/>
+              Refactor
             </div>
-          </DrawerTrigger>
+          </div>
           </motion.div>
         )
       }
