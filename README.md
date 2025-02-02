@@ -55,9 +55,6 @@ Fearing the deadline approaching quickly, we could not, for the life of us, come
 
 ## Usage
 
-```markdown
 1. **Launch the Application**: Open your browser and navigate to https://www.nobrainstorm.tech/.
-2. **Create a New Session**: Start a new brainstorming session by selecting the "New Session" option.
-3. **Utilize the Team Canvas**: Collaborate with your team in real-time using text, sketches, and sticky notes.
-4. **Engage the AI Canvas**: Allow the AI to organize and visualize your ideas into various formats.
-5. **Explore Additional Features**: Use voice-to-text, image analysis, and other tools to enhance your brainstorming experience.
+2. **Engage the AI Canvas**: Allow the AI to organize and visualize your ideas into various formats.
+3. **Explore Additional Features**: Use explain with AI, image analysis, and other tools to enhance your brainstorming experience.
