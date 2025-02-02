@@ -9,6 +9,7 @@ type TodoTask = {
   title: string;
   effort: string;
   deadline: string | null;
+  priority: string;
 };
 
 type ITodoShape = TLBaseShape<
@@ -31,6 +32,7 @@ export class TodoShapeUtil extends BaseBoxShapeUtil<ITodoShape> {
         title: T.string,
         effort: T.string,
         deadline: T.string.nullable(),
+        priority: T.string,
       })
     ),
   };
@@ -45,6 +47,7 @@ export class TodoShapeUtil extends BaseBoxShapeUtil<ITodoShape> {
           title: 'Set up development environment',
           effort: 'quick',
           deadline: null,
+          priority: '🟡',
         },
       ],
     };
@@ -52,6 +55,8 @@ export class TodoShapeUtil extends BaseBoxShapeUtil<ITodoShape> {
 
   component(shape: ITodoShape) {
     const { tasks, w, h } = shape.props;
+    console.log(tasks);
+    
     const [completedTasks, setCompletedTasks] = useState(new Set<string>());
 
     const getEffortColor = (effort: string) => {
@@ -73,7 +78,7 @@ export class TodoShapeUtil extends BaseBoxShapeUtil<ITodoShape> {
           return <CheckCircle2 className="w-4 h-4 text-green-600" />;
         case 'medium':
           return <Clock className="w-4 h-4 text-yellow-600" />;
-        case 'large':
+        case 'lengthy':
           return <AlertCircle className="w-4 h-4 text-red-600" />;
         default:
           return null;

@@ -9,6 +9,7 @@ import UserEditor from "./user-editor";
 import UserHoverTextButton from "./user-hover-text-button";
 import EnhanceWithAIDrawer from "./enhance-with-ai-drawer";
 import { TodoShapeUtil } from "./custom-tldraw-components/todo-list";
+import SidebarButtons from "./sidebar-buttons";
 
 // const mockTasks = [
 //   {
@@ -60,6 +61,7 @@ export default function UserCanvas() {
           // })
         }}
       >
+        <SidebarButtons />
         <EnhanceWithAIDrawer />
         <UserEditor />
         <UserHoverTextButton />

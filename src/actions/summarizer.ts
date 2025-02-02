@@ -1,7 +1,7 @@
 "use server";
 
 import OpenAI from "openai";
-import { ChatCompletionCreateParamsStreaming } from "openai/resources/index.mjs";
+import { ChatCompletionCreateParamsNonStreaming } from "openai/resources/index.mjs";
 import { summarizeConfig } from "@/constants/constants";
 
 export async function generateTodoList(canvasInput: String) {
@@ -9,7 +9,7 @@ export async function generateTodoList(canvasInput: String) {
     apiKey: process.env.OPENAI_API_KEY,
   });
 
-  let prompt: ChatCompletionCreateParamsStreaming = {
+  let prompt: ChatCompletionCreateParamsNonStreaming = {
     ...summarizeConfig,
     messages: [
       {
@@ -38,24 +38,12 @@ export async function generateTodoList(canvasInput: String) {
 - 🟢 Low: Nice to have
 
 # Effort Estimation
-- ⚡️ Quick (< 1 hour)
-- ⚡️⚡️ Medium (half-day)
-- ⚡️⚡️⚡️ Substantial (full day+)
+- 'quick' Quick (< 1 hour)
+- 'medium' Medium (half-day)
+- 'lengthy' Substantial (full day+)
 
 # Output Format
-Provide output in two formats:
-
-1. Human readable wrapped in <TASKS> tags
-Example:
-<TASKS>
-## High Priority
-- Set up development environment ⚡️
-  - Install Node.js
-  - Configure IDE
-- Design database schema ⚡️⚡️⚡️
-</TASKS>
-
-2. JSON structure wrapped in <JSON> tags
+1. JSON structure wrapped in <JSON> tags
 <JSON>
 {
   "tasks": [
@@ -64,6 +52,7 @@ Example:
       "title": "Set up development environment",
       "effort": "quick",
       "deadline": null,
+      "priortiy": "🟡"
     }
   ]
 }
@@ -85,7 +74,7 @@ Example:
     response_format: {
       "type": "text"
     },
-    stream: true,
+    stream: false,
   };
 
   const response = await openai.chat.completions.create(prompt);
