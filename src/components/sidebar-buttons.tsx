@@ -1,13 +1,14 @@
-import { CircleCheckBig, Star, Settings, Bell, LineChart } from "lucide-react";
+import { CircleCheckBig, Star, Settings, Bell, LineChart, Brush } from "lucide-react";
 import SidebarChip from "@/components/ui/sidebar-chip"; // Adjust the import path as needed
 import { useEditorStore } from "@/store/editor";
 import { generateApproach } from "@/actions/approach";
-import { createShapeId, TLShapeId, useEditor } from "tldraw";
+import { AssetRecordType, createShapeId, exportToBlob, TLShapeId, useEditor } from "tldraw";
 import { getTextBetweenTags } from "@/lib/utils";
 import { text } from "d3";
 import { generateTodoList } from "@/actions/summarizer";
 import { useFrameStore } from "@/store/frame";
 import { generateLineGraph } from "@/actions/line-graph";
+import { analyzeImage, encodeImage } from "@/actions/image";
 
 export default function SidebarButtons() {
   const { hoveredNode } = useEditorStore();
@@ -111,13 +112,12 @@ export default function SidebarButtons() {
         disabled={!hoveredNode}
       />
       <ComplexityTimePlotButton />
-      
+      <ScribbleToArtButton />
     </div>
   );
 }
 
 function ComplexityTimePlotButton() {
-  const { hoveredNode } = useEditorStore();
   const { selectedObjectIds } = useFrameStore();
   const editor = useEditor();
   
@@ -158,4 +158,100 @@ function ComplexityTimePlotButton() {
     text="Approach metric" 
     disabled={!isSelectedObjectsTextAndMoreThanTwo}
   />
+}
+
+function ScribbleToArtButton() {
+  const { selectedObjectIds } = useFrameStore();
+  const editor = useEditor();
+
+  const isSelectedObjectsNonText = selectedObjectIds.length >= 1 && selectedObjectIds.every((id: TLShapeId) => {
+    const shape = editor.getShape(id);
+    return shape?.type !== "text" && shape?.type !== "geo";
+  });
+
+  return (
+    <SidebarChip
+      onClick={async () => {
+        return new Promise(async (resolve, reject) => {
+          try {
+            const blob = await exportToBlob({
+              editor,
+              format: "png",
+              ids: selectedObjectIds,
+            });
+
+            // Creating a FileReader instance
+            const reader = new FileReader();
+
+            // Reading the Blob as an ArrayBuffer
+            reader.readAsArrayBuffer(blob);
+
+            // Event handler for when the FileReader has finished loading
+            reader.onloadend = async function () {
+              try {
+                // Obtaining the ArrayBuffer
+                let buffer = reader.result;
+
+                // Converting ArrayBuffer to Base64 string
+                let base64data = btoa(String.fromCharCode.apply(null, new Uint8Array(buffer)));
+
+                // Logging the Base64 encoded string
+                const url = await analyzeImage(base64data);
+                const assetId = AssetRecordType.createId();
+
+                editor.createAssets([
+                  {
+                    id: assetId,
+                    type: "image",
+                    typeName: "asset",
+                    props: {
+                      name: "Exported Image",
+                      src: url,
+                      w: 200,
+                      h: 400,
+                      mimeType: blob.type,
+                      isAnimated: false,
+                    },
+                    meta: {},
+                  },
+                ]);
+
+                editor.createShape({
+                  id: createShapeId(),
+                  type: "image",
+                  x: 100,
+                  y: 100,
+                  props: {
+                    w: 500,
+                    h: 500,
+                    assetId: assetId,
+                  },
+                });
+
+                editor.deleteShapes(selectedObjectIds);
+
+                // Resolve the promise when everything is successful
+                resolve();
+              } catch (error) {
+                // Reject the promise if there's an error in the onloadend handler
+                reject(new Error("Error processing image: "));
+              }
+            };
+
+            // Handle FileReader errors
+            reader.onerror = () => {
+              reject(new Error("Failed to read the blob as ArrayBuffer"));
+            };
+          } catch (error) {
+            // Reject the promise if there's an error in the initial blob export
+            reject(new Error("Error exporting to blob: "));
+          }
+        });
+      }}
+      icon={<Brush size={16} />}
+      className="mt-32 bg-orange-500"
+      text="Scribble to Art"
+      disabled={!isSelectedObjectsNonText}
+    />
+  );
 }

@@ -42,15 +42,15 @@ export async function analyzeImage(base64Image: string): Promise<string> {
           content: [
             {
               type: "text",
-              text: `You will receive an image, you need to see the image and you need to create an image generation prompt for DALLE-3 to generate the same image. The style of the image should be a simple, doodle like drawing but do get into detail about the image. The image should also consider spatial directions of the elements in it.
-                    The prompt should be in the form of:
-                    <PROMPT> generated_prompt_here </PROMPT>
+              text: `You will receive an image, you need to see the image and you need to create an image generation prompt for DALLE-3 to generate the same image. The style of the image should be a simple and very minimalistic, doodle like drawing but do get into detail about the image. The image should also consider spatial directions of the elements in it. It is very necessary that the picture has a white background
+                    The prompt MUST be in the form of:
+                    <PRE> generated_prompt_here </PRE>
                 `,
             },
             {
               type: "image_url",
               image_url: {
-                url: `data:image/jpeg;base64,${base64Image}`,
+                url: `data:image/png;base64,${base64Image}`,
               },
             },
           ],
@@ -61,7 +61,11 @@ export async function analyzeImage(base64Image: string): Promise<string> {
     if (message === null) {
       return "";
     }
-    var url = generateDalleImage(getTextBetweenTags(message, "<PROMPT>"));
+
+    console.log(message);
+    const text = getTextBetweenTags(message, "PRE");
+    console.log("TEXT", text);
+    var url = generateDalleImage(text);
     return url;
   } catch (error) {
     throw new Error(
