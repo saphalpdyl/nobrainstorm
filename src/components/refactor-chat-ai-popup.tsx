@@ -47,7 +47,7 @@ const RefactorChatPopup = ({ isOpen, onClose, initialText, onAccept }: {
 
     setMessages(newMessages);
     setInputMessage('');
-    setCurrentText(aiResponse!.choices![0]!.message!.content); // Extract the modified text
+    setCurrentText(aiResponse!.choices![0]!.message!.content ?? ''); // Extract the modified text
   };
 
   return (
