@@ -5,6 +5,8 @@ import "tldraw/tldraw.css";
 
 import { ComplexityTimePlot } from "./custom-tldraw-components/complexity-plot";
 import { VennDiagramShape } from "@/components/custom-tldraw-components/venn-diagram";
+import UserEditor from "./user-editor";
+import UserHoverTextButton from "./user-hover-text-button";
 
 export default function UserCanvas() {
   return (
@@ -24,6 +26,8 @@ export default function UserCanvas() {
           editor.updateInstanceState({ isGridMode: true, })
         }}
       >
+        <UserEditor />
+        <UserHoverTextButton />
       </Tldraw>
     </div>
   );
