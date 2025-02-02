@@ -50,7 +50,8 @@ export class ComplexityTimePlot extends BaseBoxShapeUtil<IComplexityTimePlot> {
       >
         <span className="text-xl font-bold mb-2 font-shantellSans">Comparison of Approaches</span>
         <div
-          className="flex-1"
+          className="flex-1 bg-white rounded-lg"
+          
           style={{
             pointerEvents: 'all',
             boxShadow: '0 1px 3px rgba(0,0,0,0.12)',

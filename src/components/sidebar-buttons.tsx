@@ -1,4 +1,4 @@
-import { CircleCheckBig, Star, Settings, Bell } from "lucide-react";
+import { CircleCheckBig, Star, Settings, Bell, LineChart } from "lucide-react";
 import SidebarChip from "@/components/ui/sidebar-chip"; // Adjust the import path as needed
 import { useEditorStore } from "@/store/editor";
 import { generateApproach } from "@/actions/approach";
@@ -6,6 +6,8 @@ import { createShapeId, TLShapeId, useEditor } from "tldraw";
 import { getTextBetweenTags } from "@/lib/utils";
 import { text } from "d3";
 import { generateTodoList } from "@/actions/summarizer";
+import { useFrameStore } from "@/store/frame";
+import { generateLineGraph } from "@/actions/line-graph";
 
 export default function SidebarButtons() {
   const { hoveredNode } = useEditorStore();
@@ -108,6 +110,52 @@ export default function SidebarButtons() {
         text="Generate Todolist" 
         disabled={!hoveredNode}
       />
+      <ComplexityTimePlotButton />
+      
     </div>
   );
+}
+
+function ComplexityTimePlotButton() {
+  const { hoveredNode } = useEditorStore();
+  const { selectedObjectIds } = useFrameStore();
+  const editor = useEditor();
+  
+  const isSelectedObjectsTextAndMoreThanTwo = selectedObjectIds.length >= 2 && selectedObjectIds.every((id: TLShapeId) => {
+    const shape = editor.getShape(id);
+    return shape?.type === "text" || shape?.type === "geo";
+  });
+  
+  return <SidebarChip 
+    onClick={async () => {
+      const textsOfShapes = selectedObjectIds.map((id: TLShapeId) => {
+        const shape = editor.getShape(id);
+        return (shape?.props as any).text;
+      });
+
+      const hoveredNodeRef = editor.getShape(selectedObjectIds[0]);
+
+      const response = await generateLineGraph(textsOfShapes.join("\n\n\n"));      
+      const data = getTextBetweenTags(response.choices[0].message.content ?? "", "LINEGRAPH");
+
+      const parsedData = JSON.parse(data);
+      console.log(parsedData);
+
+      editor.createShape({
+        id: createShapeId(),
+        type: 'complexity-time-plot',
+        x: hoveredNodeRef!.x + 1000,
+        y: hoveredNodeRef!.y,
+        props: {
+          w: 600,
+          h: 500,
+          data: JSON.parse(data).graphs[0].data,
+        },
+      });
+    }}
+    icon={<LineChart size={16} />} 
+    className="mt-32 bg-purple-500"
+    text="Approach metric" 
+    disabled={!isSelectedObjectsTextAndMoreThanTwo}
+  />
 }

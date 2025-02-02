@@ -1,4 +1,5 @@
 import { useEditorStore } from "@/store/editor";
+import { useFrameStore } from "@/store/frame";
 import { useEffect } from "react";
 import { TLEventInfo, useEditor, type TLShape } from "tldraw";
 
@@ -40,8 +41,17 @@ export default function UserEditor() {
   }, [editor]);
 
   useEffect(() => {
+    const handleFrame = (e: number) => {
+      useFrameStore.setState({
+        selectedObjectIds: editor.getSelectedShapeIds(),
+      });
+    }
     
+    editor.on("frame", handleFrame)
 
+    return () => {
+      editor.off("frame", handleFrame)
+    }
   }, []);
 
   return null;

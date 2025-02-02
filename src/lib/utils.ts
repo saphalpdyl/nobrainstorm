@@ -7,11 +7,16 @@ export function cn(...inputs: ClassValue[]) {
 
 // Two parameters with 0 to 1 range, the more it is the greener it is and the less it is the redder it is, in hex.
 export const getComplexityColor = (complexity: number, time: number) => {
-  const complexityColor = Math.round(complexity * 255).toString(16).padStart(2, '0');
+  // Invert the complexity to make the color darker as complexity increases
+  const invertedComplexity = 1 - complexity;
+  const complexityColor = Math.round(invertedComplexity * 255).toString(16).padStart(2, '0');
+  
+  // Time color remains the same
   const timeColor = Math.round(time * 255).toString(16).padStart(2, '0');
+  
+  // Return the color in hex format, with time and complexity influencing the red and green channels
   return `#${timeColor}${complexityColor}00`;
 }
-
 export function cleanMarkdown(markdown: string, preserveBreaks: boolean = true): string {
   // Early exit for empty input
   if (!markdown) return ''
