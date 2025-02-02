@@ -13,8 +13,8 @@ Fearing the deadline approaching quickly, we could not, for the life of us, come
 
 **Technologies used**
 1. Next JS with Tailwind
-2. OpenAI for AI analysis and explanation
-3. Data bricks for Deepseek Janus[Image manipulation]
+2. Tldraw backend for rendering
+3. OpenAI for AI analysis and explanation
 
 ![Main Image](https://i.imgur.com/nvo3Hzl.png)
 
@@ -23,7 +23,7 @@ Fearing the deadline approaching quickly, we could not, for the life of us, come
 ### Canvas Interface with tldraw
 
 - **Canvas**: Engage in real-time collaboration using text, sketches, and sticky notes.
-- **AI Canvas**: Talk with AI to automatically organiz ideas into flowcharts, Venn diagrams, or X-Y graphs to reveal trends and patterns.
+- **AI Canvas**: Talk with AI to automatically organiz ideas into flowcharts, create todos, venn diagrams, or X-Y graphs to reveal trends and patterns.
 
 ### AI Guidance
 
@@ -33,6 +33,7 @@ Fearing the deadline approaching quickly, we could not, for the life of us, come
 ### Image Analysis & Enhancement
 
 - **Sketch Refinement**: Sketch images and scribbles; the AI analyzes content and refines or iterates via DALL-E integration.
+- **Venn Diagram**: Dynamically create a Venn Diagram from the different ideas throughout the given contenxt.
 
 ### Graphing
 
@@ -40,6 +41,7 @@ Fearing the deadline approaching quickly, we could not, for the life of us, come
   - AI creates JSON values representing X and Y coordinates for 2-3 graphs comparing key brainstorming elements.
   - Contextual pairing and ranking for 2D graph plotting.
   - The frontend utilizes this data to draft charts using a JavaScript library.
+
 
 ## Features We Want to Add in the Future
 
