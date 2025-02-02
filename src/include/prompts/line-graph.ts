@@ -7,7 +7,7 @@ import {lineGraphConfig}  from "../../constants/constants"
 
 export async function generateLineGraph(canvasInput: String) {
   let prompt: ChatCompletionCreateParamsNonStreaming = {
-    model: lineGraphConfig.model,
+    ... lineGraphConfig,
     messages: [
       {
         "role": "system",
@@ -26,11 +26,6 @@ export async function generateLineGraph(canvasInput: String) {
     response_format: {
       "type": "text"
     },
-    temperature: lineGraphConfig.temperature,
-    max_tokens: lineGraphConfig.max_tokens,
-    top_p: lineGraphConfig.top_p,
-    frequency_penalty: lineGraphConfig.frequency_penalty,
-    presence_penalty: lineGraphConfig.presence_penalty
   }
   const openai = new OpenAI({
     apiKey: process.env.OPENAI_API_KEY,

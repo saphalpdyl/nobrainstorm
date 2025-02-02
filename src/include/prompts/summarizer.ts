@@ -27,12 +27,7 @@ export async function generateSummary(canvasInput: String) {
     response_format: {
       "type": "text"
     },
-    temperature: 1,
     stream: true, // Always stream the response
-    max_tokens: 6000,
-    top_p: 1,
-    frequency_penalty: 0,
-    presence_penalty: 0,
   };
 
   const response = await openai.chat.completions.create(prompt);
