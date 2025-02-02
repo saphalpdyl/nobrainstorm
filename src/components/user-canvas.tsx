@@ -1,6 +1,6 @@
 "use client";
 
-import {  createShapeId, DefaultGrid, Tldraw, TLGeoShape } from "tldraw";
+import {  createShapeId, DefaultGrid, HTMLContainer, Tldraw, TLGeoShape } from "tldraw";
 import "tldraw/tldraw.css";
 
 import { ComplexityTimePlot } from "./custom-tldraw-components/complexity-plot";

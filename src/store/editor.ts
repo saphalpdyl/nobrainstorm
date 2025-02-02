@@ -10,6 +10,9 @@ interface EditorStore {
 
   textToEnhance: string | null;
   setTextToEnhance: (text: string | null) => void;
+
+  isRefactorChatOpen: boolean;
+  setIsRefactorChatOpen: (isOpen: boolean) => void;
 }
 
 export const useEditorStore = create<EditorStore>((set) => ({
@@ -23,4 +26,7 @@ export const useEditorStore = create<EditorStore>((set) => ({
 
   textToEnhance: null,
   setTextToEnhance: (text: string | null) => set({ textToEnhance: text }),
+
+  isRefactorChatOpen: false,
+  setIsRefactorChatOpen: (isOpen: boolean) => set({ isRefactorChatOpen: isOpen }),
 }));

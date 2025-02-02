@@ -2,10 +2,15 @@ import { useEditorStore } from "@/store/editor";
 import { Pencil, Sparkles } from "lucide-react";
 import { AnimatePresence, hover, motion } from "motion/react";
 import { DrawerTrigger } from "@/components/ui/drawer";
+import RefactorChatPopup from "./refactor-chat-ai-popup";
+import { createShapeId, useEditor } from "tldraw";
 
 export default function UserHoverTextButton() {
-  const { hoveredNode, setTextToEnhance, setIsEnhanceChatOpen } = useEditorStore();
+  const { hoveredNode, setTextToEnhance, setIsEnhanceChatOpen, isRefactorChatOpen, setIsRefactorChatOpen } = useEditorStore();
+  const editor = useEditor();
 
+  console.log("Refaactor chat open", isRefactorChatOpen);
+  
   return <AnimatePresence>
       {
         hoveredNode && (
@@ -38,10 +43,31 @@ export default function UserHoverTextButton() {
           <div
             className="py-1 px-2 rounded-lg shadow-md bg-white hover:bg-gray-100 text-black font-semibold  cursor-pointer"
           >
-            <div onClick={() => setIsEnhanceChatOpen(true)} className="flex items-center gap-2">
+            <div onClick={(e) => {
+              setIsRefactorChatOpen(true)
+            }} className="flex items-center gap-2">
               <Pencil className="text-gray-600" size={16}/>
               Refactor
             </div>
+            {
+              isRefactorChatOpen && (
+                <RefactorChatPopup
+                  isOpen={isRefactorChatOpen}
+                  onClose={() => setIsRefactorChatOpen(false)}
+                  initialText={(hoveredNode.props as any).text}
+                  onAccept={(text: string) => {
+                    editor.updateShapes([{
+                      id: hoveredNode.id,
+                      type: hoveredNode.type,
+                      props: {
+                        text,
+                      }
+                    }]);
+                    setIsRefactorChatOpen(false);
+                  }}
+                />
+              )
+            }
           </div>
           </motion.div>
         )
