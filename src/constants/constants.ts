@@ -26,5 +26,13 @@ const explainWithAIConfig = {
     presence_penalty: 0
   };
 
+const approachConfig = {
+    model: "gpt-4o",
+    temperature: 1,
+    max_tokens: 5000,
+    top_p: 1,
+    frequency_penalty: 0,
+    presence_penalty: 0
+  };
   
-export {lineGraphConfig, summarizeConfig, explainWithAIConfig};
+export {lineGraphConfig, summarizeConfig, explainWithAIConfig, approachConfig};
