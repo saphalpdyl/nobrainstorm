@@ -9,12 +9,14 @@ Fearing the deadline approaching quickly, we could not, for the life of us, come
 
 **Nobrainstorm** is an online whiteboard enhanced by AI analysis and automation, designed to revolutionize how one brainstorms and develops ideas.
 
+![Main Image](https://i.imgur.com/nvo3Hzl.png)
+
 ## Features
 
 ### Canvas Interface with tldraw
 
 - **Canvas**: Engage in real-time collaboration using text, sketches, and sticky notes.
-- **AI Canvas**: Automatically organizes ideas into flowcharts, Venn diagrams, or X-Y graphs to reveal trends and patterns.
+- **AI Canvas**: Talk with AI to automatically organiz ideas into flowcharts, Venn diagrams, or X-Y graphs to reveal trends and patterns.
 
 ### AI Guidance
 
