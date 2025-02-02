@@ -1,10 +1,10 @@
 "use server";
 
 import OpenAI from "openai";
-import { ChatCompletionCreateParamsStreaming} from "openai/resources/index.mjs";
+import { ChatCompletionCreateParamsStreaming } from "openai/resources/index.mjs";
 import { summarizeConfig } from "@/constants/constants";
 
-export async function generateSummary(canvasInput: String) {
+export async function generateTodoList(canvasInput: String) {
   const openai = new OpenAI({
     apiKey: process.env.OPENAI_API_KEY,
   });
@@ -16,7 +16,63 @@ export async function generateSummary(canvasInput: String) {
         "role": "system",
         "content": [
           {
-            "text": "Your analysis use context properly, consistent and logical. \n\nYou are an AI assistant tasked with analyzing brainstorming discussions to extract structured insights. Follow these steps to ensure clarity and logical consistency:\n\n# Steps\n\n1. **Understand Context**: Carefully read through the brainstorming discussion to understand the main ideas and their interrelations. \n2. **Summarize Key Points**: Write a concise summary capturing the essence of the discussion.  Mention all the major elements of discussion of the brainstrom. Write bullet points and ensure bullet points are not too long.\n3. **Compare Ideas**:\n   - Compare strengths and weaknesses of discussed ideas.\n4. **Evaluate Positives and Negatives**:\n   - Construct a markdown table listing positives and negatives associated with the ideas.\n   - Use emojis for visual enhancement.\n5. **Highlight Unusual Ideas**: Any unconventional or standout ideas should be marked with a 💡 emoji.\n\n# Output Format\n\n- **Summary**: Wrap the summary in `<SUMMARY>` tags.\n- **Json**: Json format of a table inside `<TABLE>` tags.\n\n\n\n# Examples\n- Output Example:\n  ```\n  <SUMMARY> Idea A is affordable but has scalability issues, while Idea B is innovative and scalable. </SUMMARY>\n  \n<TABLE/>\n{\n  \"ideas\": [\n    {\n      \"name\": \"Idea A\",\n      \"strengths\": [\"Cost-effective 💲\", \"Good Design\", ....],\n      \"weaknesses\": [\"Lacks scalability 📉\", \"Poor tech stack\",...]\n    },\n    {\n      \"name\": \"Idea B 💡\",\n      \"strengths\": [\"Innovative 🌟\", \"Cheap\", ...],\n      \"weaknesses\": [\"High cost 💰\", \"Bad Design\", ....]\n    }\n  ]\n}\n<TABLE/>\n  ```\n\n# Notes\n- Stick strictly to the information provided or revolving around in the brainstrom, avoiding fabrication of details.",
+            "text": `You are an AI assistant specializing in converting brainstorming discussions into actionable todo lists. Your goal is to identify and structure concrete tasks while maintaining context and relationships between items.
+
+# Analysis Steps
+1. Read through the brainstorming content carefully
+2. Identify actionable items and implicit tasks
+3. Group related tasks together
+4. Assign priorities and estimated effort
+5. Structure dependencies between tasks
+
+# Output Requirements
+- Extract ONLY actionable tasks (no general notes or ideas)
+- Each task must be specific and completable
+- Include context when necessary
+- Preserve any mentioned deadlines or time constraints
+- Indicate task dependencies where present
+
+# Priority Levels
+- 🔴 High: Urgent or blocking other tasks
+- 🟡 Medium: Important but not urgent
+- 🟢 Low: Nice to have
+
+# Effort Estimation
+- ⚡️ Quick (< 1 hour)
+- ⚡️⚡️ Medium (half-day)
+- ⚡️⚡️⚡️ Substantial (full day+)
+
+# Output Format
+Provide output in two formats:
+
+1. Human readable wrapped in <TASKS> tags
+Example:
+<TASKS>
+## High Priority
+- Set up development environment ⚡️
+  - Install Node.js
+  - Configure IDE
+- Design database schema ⚡️⚡️⚡️
+</TASKS>
+
+2. JSON structure wrapped in <JSON> tags
+<JSON>
+{
+  "tasks": [
+    {
+      "id": "1",
+      "title": "Set up development environment",
+      "effort": "quick",
+      "deadline": null,
+    }
+  ]
+}
+</JSON>
+
+# Rules
+3. Don't create tasks for vague or non-actionable items
+4. Preserve any specific technical requirements or constraints mentioned
+5. Include context in parentheses when task description alone might be ambiguous`,
             "type": "text"
           }
         ]
@@ -29,7 +85,7 @@ export async function generateSummary(canvasInput: String) {
     response_format: {
       "type": "text"
     },
-    stream: true, // Always stream the response
+    stream: true,
   };
 
   const response = await openai.chat.completions.create(prompt);
