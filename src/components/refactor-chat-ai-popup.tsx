@@ -8,7 +8,12 @@ import { generateAskAIRespones } from '@/actions/ask-ai';
 import { ChatCompletionMessageParam } from 'openai/resources/index.mjs';
 import { useEditorStore } from '@/store/editor';
 
-const RefactorChatPopup = ({ isOpen, onClose, initialText, onAccept }) => {
+const RefactorChatPopup = ({ isOpen, onClose, initialText, onAccept }: {
+  isOpen: boolean;
+  onClose: () => void;
+  initialText: string;
+  onAccept: (text: string) => void;
+}) => {
   const { setIsRefactorChatOpen } = useEditorStore();
   
   const [messages, setMessages] = useState<ChatCompletionMessageParam[]>([]);
