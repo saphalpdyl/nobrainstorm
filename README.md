@@ -1,5 +1,7 @@
 # [Nobrainstorm: The Only Whiteboard You Need](https://www.nobrainstorm.tech/)
 
+<img src="public/logo.png" alt="logo" width=100 height=100/>
+
 - [36 hours left] Alright, let’s begin this hackathon with a winning spirit!!!  
 - [24 hours left] What do we do?  
 - [12 hours left] *What do we do?*  
@@ -8,6 +10,11 @@
 Fearing the deadline approaching quickly, we could not, for the life of us, come up with a project we all wanted to work on. Each of us had an idea in mind, but without a central theme, we were lost. Just like us, many others faced the same struggle in deciding what to work on. Hence, we decided to create **Nobrainstorm** to solve this predicament.
 
 **Nobrainstorm** is an online whiteboard enhanced by AI analysis and automation, designed to revolutionize how one brainstorms and develops ideas.
+
+**Technologies used**
+1. Next JS with Tailwind
+2. OpenAI for AI analysis and explanation
+3. Data bricks for Deepseek Janus[Image manipulation]
 
 ![Main Image](https://i.imgur.com/nvo3Hzl.png)
 
