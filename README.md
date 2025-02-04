@@ -17,6 +17,7 @@ Fearing the deadline approaching quickly, we could not, for the life of us, come
 3. OpenAI for AI analysis and explanation
 
 ![Main Image](https://i.imgur.com/nvo3Hzl.png)
+![image](https://github.com/user-attachments/assets/ccf73caf-12e5-4e97-8a07-0f0ba6b936cf)
 
 ## Features
 
